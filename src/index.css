@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,47 +38,32 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -96,6 +84,61 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-betting-dark text-white font-inter antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .glass-card {
+    @apply bg-betting-glass backdrop-blur-md border border-white/10 rounded-xl;
+  }
+
+  .text-gradient {
+    @apply bg-gold-gradient text-transparent bg-clip-text;
+  }
+
+  .btn-primary {
+    @apply bg-gold text-black font-medium px-6 py-3 rounded-full transition-all duration-300 hover:bg-gold-light focus:ring-2 focus:ring-gold-light focus:ring-opacity-50 transform hover:-translate-y-1;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white font-medium px-6 py-3 rounded-full transition-all duration-300 border border-white/20 hover:border-gold/70 hover:text-gold focus:ring-2 focus:ring-gold focus:ring-opacity-30;
+  }
+
+  .nav-link {
+    @apply relative text-white/70 hover:text-white transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-gold after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+
+  .gold-glow {
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  .section-padding {
+    @apply py-24 px-6 md:px-12 lg:px-24;
+  }
+
+  .game-card {
+    @apply relative overflow-hidden bg-card-gradient backdrop-blur-md rounded-xl border border-white/10 transition-all duration-500 hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5;
+  }
+
+  .game-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-transparent to-betting-dark/80 opacity-0 transition-opacity duration-500;
+  }
+
+  .game-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
   }
 }
