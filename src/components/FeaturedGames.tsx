@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Gamepad2, DollarSign, Trophy } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Gamepad2, DollarSign, Trophy, Users, User } from 'lucide-react';
 
 const games = [
   {
@@ -11,6 +11,7 @@ const games = [
     icon: <Trophy className="w-10 h-10 text-gold" />,
     bgImage: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=1000',
     popular: true,
+    betRange: '₹5 - ₹500'
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const games = [
     icon: <Gamepad2 className="w-10 h-10 text-gold" />,
     bgImage: 'https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=1000',
     popular: false,
+    betRange: '₹5 - ₹500'
   },
   {
     id: 3,
@@ -27,22 +29,57 @@ const games = [
     icon: <DollarSign className="w-10 h-10 text-gold" />,
     bgImage: 'https://images.unsplash.com/photo-1629901925121-8a141c2a42f4?q=80&w=1000',
     popular: true,
+    betRange: '₹5 - ₹500'
   },
   {
     id: 4,
-    title: 'Lucky 7',
-    description: 'Simple and exciting dice game with huge payouts',
-    icon: <Gamepad2 className="w-10 h-10 text-gold" />,
+    title: 'Single Player Tournament',
+    description: 'Challenge yourself in solo tournaments with high rewards',
+    icon: <User className="w-10 h-10 text-gold" />,
     bgImage: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1000',
     popular: false,
+    betRange: '₹5 - ₹500',
+    playerCount: 1
   },
   {
     id: 5,
-    title: 'Andar Bahar',
-    description: 'Fast-paced traditional Indian card game',
-    icon: <DollarSign className="w-10 h-10 text-gold" />,
+    title: '2 Player Tournament',
+    description: 'Head-to-head competition with direct opponents',
+    icon: <Users className="w-10 h-10 text-gold" />,
     bgImage: 'https://images.unsplash.com/photo-1609743522653-52354461eb27?q=80&w=1000',
     popular: false,
+    betRange: '₹5 - ₹500',
+    playerCount: 2
+  },
+  {
+    id: 6,
+    title: '4 Player Tournament',
+    description: 'Four-way competition with increased winning potential',
+    icon: <Users className="w-10 h-10 text-gold" />,
+    bgImage: 'https://images.unsplash.com/photo-1553481187-be93c21490a9?q=80&w=1000',
+    popular: true,
+    betRange: '₹5 - ₹500',
+    playerCount: 4
+  },
+  {
+    id: 7,
+    title: '8 Player Tournament',
+    description: 'Mid-sized tournaments with exciting gameplay dynamics',
+    icon: <Users className="w-10 h-10 text-gold" />,
+    bgImage: 'https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=80&w=1000',
+    popular: false,
+    betRange: '₹5 - ₹500',
+    playerCount: 8
+  },
+  {
+    id: 8,
+    title: '10 Player Tournament',
+    description: 'Large-scale tournaments with maximum excitement',
+    icon: <Users className="w-10 h-10 text-gold" />,
+    bgImage: 'https://images.unsplash.com/photo-1574144113084-b6f450cc5e0c?q=80&w=1000',
+    popular: true,
+    betRange: '₹5 - ₹500',
+    playerCount: 10
   }
 ];
 
@@ -71,7 +108,7 @@ const FeaturedGames = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Games</h2>
           <p className="text-white/70 max-w-2xl mx-auto">
             Choose from our selection of popular betting games, designed for maximum 
-            excitement and potential rewards.
+            excitement and potential rewards. Bets range from ₹5 to ₹500.
           </p>
         </div>
 
@@ -117,7 +154,20 @@ const FeaturedGames = () => {
                         {game.icon}
                       </div>
                       <h3 className="text-xl font-bold mb-2">{game.title}</h3>
-                      <p className="text-white/70 text-sm">{game.description}</p>
+                      <p className="text-white/70 text-sm mb-2">{game.description}</p>
+                      
+                      {/* Betting Range Badge */}
+                      <div className="inline-block bg-betting-light/50 text-white/90 text-xs px-2 py-1 rounded-md">
+                        {game.betRange}
+                      </div>
+                      
+                      {/* Player Count Badge - Only for tournament games */}
+                      {game.playerCount && (
+                        <div className="absolute bottom-20 left-6 flex items-center gap-1 bg-betting-dark/70 text-gold text-xs px-2 py-1 rounded-md">
+                          <Users className="w-3 h-3" />
+                          <span>{game.playerCount} {game.playerCount === 1 ? 'Player' : 'Players'}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="mt-auto pt-6 opacity-0 translate-y-8 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                       <Button className="w-full btn-primary">Play Now</Button>
